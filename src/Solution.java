@@ -17,45 +17,41 @@ public class Solution {
 
         // Write Your Code Here
 
-        print(a);
-        sort(a);
-    }
+        for (int i = 0; i < n; i++) {
+            // Track number of elements swapped during a single array traversal
+            int numberOfSwaps = 0;
 
-    public static void sort(int[] a) {
-        int max = 0;
-        int maxIndex = 0;
-        for (int i = 0; i < a.length; i++) {
-            if (a[i] > max) { //find largest number in the array
-                max = a[i];
-                maxIndex = i;
-                System.out.println("Max num is: " + max);
+            for (int j = 0; j < n - 1; j++) {
+                // Swap adjacent elements if they are in decreasing order
+                if (a[j] > a[j + 1]) {
+                    swap(a, a[j], a[j + 1]);
+                    numberOfSwaps++;
+                }
+            }
+
+            // If no elements were swapped during a traversal, array is sorted
+            if (numberOfSwaps == 0) {
+                break;
             }
         }
 
+        print(a);
 
-        swap(a, maxIndex, maxIndex-1);
-
-        for (int array :
-                a) {
-            System.out.print(array);
-        }
     }
 
-    public static int[] swap(int[] num, int n1, int n2) {
+    public static int[] swap(int[] a, int n1, int n2) {
 
-        int temp = num[n1];
-        num[n1] = num[n2];
-        num[n2] = temp;
+        int temp = a[n1];
+        a[n1] = a[n2];
+        a[n2] = temp;
 
-        return num;
+        return a;
     }
-
 
     public static void print(int[] a) {
         int lastElement = a[a.length-1];
         int firstElement = a[0];
         int numSwaps = 0;
-
 
         System.out.println("Array is sorted in " + numSwaps + " swaps.");
         System.out.println("First Element: " + firstElement);
